@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Simple Instagram-like theme (single file for both day/night) -->
+    <style name="Theme.InstaChatViewer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary / Accent -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/light_gray</item>
+        <item name="colorSecondary">@color/purple_500</item>
 
-    <style name="Theme.InstaChatViewer" parent="android:Theme.Material.Light.NoActionBar" />
+        <!-- Status / Nav bars -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+
+        <!-- Window & text -->
+        <item name="android:windowBackground">@color/light_gray</item>
+        <item name="android:textColorPrimary">@color/black</item>
+
+
+    </style>
 </resources>
