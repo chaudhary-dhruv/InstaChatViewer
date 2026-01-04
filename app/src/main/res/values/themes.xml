@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Simple Instagram-like theme (single file for both day/night) -->
     <style name="Theme.InstaChatViewer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary / Accent -->
+        <!-- Base colors -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/light_gray</item>
-        <item name="colorSecondary">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/black</item>
 
-        <!-- Status / Nav bars -->
+        <item name="colorSecondary">@color/purple_500</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">@color/light_gray</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
 
-        <!-- Window & text -->
-        <item name="android:windowBackground">@color/light_gray</item>
-        <item name="android:textColorPrimary">@color/black</item>
-
-
+        <!-- ❌ Yahan global font mat lagao, emojis toot jate hain -->
+        <!-- Titles / headers me direct TextView pe @font/inknut_antiqua use karo -->
     </style>
 </resources>
