@@ -20,7 +20,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -38,6 +39,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
@@ -84,7 +91,7 @@ dependencies {
 
     // Glide (for images & thumbnails)
     implementation("com.github.bumptech.glide:glide:5.0.5")
-    implementation("com.github.bumptech.glide:compiler:5.0.5")
+    kapt("com.github.bumptech.glide:compiler:5.0.5")
 
     // Lottie for loading animations
     implementation("com.airbnb.android:lottie:6.6.10")

@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingVertical="4dp">
 
-    <!-- Centered date header (WhatsApp style) -->
     <TextView
         android:id="@+id/tvDateHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:background="@color/deep_navy"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:textColor="@color/white"
         android:textSize="11sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@android:color/darker_gray"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="2dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"
-        android:layout_marginBottom="4dp"
-        android:alpha="0.9" />
+        android:visibility="gone" />
 
-    <!-- Row that contains the right-aligned bubble -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,36 +27,38 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@drawable/bg_bubble_sent"
-            android:padding="8dp">
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/tvMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Message text"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
                 android:autoLink="web"
-                android:linksClickable="true" />
+                android:linksClickable="true"
+                android:maxWidth="260dp"
+                android:text="Message text"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="10:30 PM"
-                android:textSize="10sp"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="2dp" />
+                android:textColor="@color/white"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tvReaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="14sp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginTop="4dp"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

@@ -19,6 +19,10 @@ object Prefs {
     fun hasImported(context: Context): Boolean =
         prefs(context).getBoolean(KEY_IMPORTED, false)
 
+    fun clearImportState(context: Context) {
+        prefs(context).edit().remove(KEY_IMPORTED).remove(KEY_OWNER_NAME).apply()
+    }
+
     fun setOwnerName(context: Context, name: String) {
         prefs(context).edit().putString(KEY_OWNER_NAME, name).apply()
     }

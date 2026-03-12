@@ -4,6 +4,8 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dhruv.instachatviewer.data.model.MessageEntity
 import com.dhruv.instachatviewer.databinding.ItemMessageReceivedBinding
@@ -16,9 +18,7 @@ import java.util.Locale
 class MessageAdapter(
     private val chatName: String,        // other person / group name
     private var ownerName: String?       // current user name, can be null
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val items = mutableListOf<MessageEntity>()
+) : ListAdapter<MessageEntity, RecyclerView.ViewHolder>(DiffCallback) {
 
     companion object {
         private const val TYPE_SENT = 1
@@ -30,19 +30,13 @@ class MessageAdapter(
         )
     }
 
-    fun submitList(list: List<MessageEntity>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
-    }
-
     fun updateOwnerName(name: String) {
         ownerName = name
         notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
-        val msg = items[position]
+        val msg = getItem(position)
         return if (ownerName != null) {
             if (msg.sender == ownerName) TYPE_SENT else TYPE_RECEIVED
         } else {
@@ -65,11 +59,9 @@ class MessageAdapter(
         }
     }
 
-    override fun getItemCount(): Int = items.size
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val msg = items[position]
-        val prev = if (position > 0) items[position - 1] else null
+        val msg = getItem(position)
+        val prev = if (position > 0) getItem(position - 1) else null
         when (holder) {
             is SentViewHolder -> holder.bind(msg, position, prev)
             is ReceivedViewHolder -> holder.bind(msg, position, prev)
@@ -176,4 +168,16 @@ class MessageAdapter(
     }
 
     private fun fixNull(s: String?): String = s ?: ""
+
+    private object DiffCallback : DiffUtil.ItemCallback<MessageEntity>() {
+        override fun areItemsTheSame(oldItem: MessageEntity, newItem: MessageEntity): Boolean {
+            return oldItem.id == newItem.id &&
+                oldItem.timestamp == newItem.timestamp &&
+                oldItem.content == newItem.content
+        }
+
+        override fun areContentsTheSame(oldItem: MessageEntity, newItem: MessageEntity): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

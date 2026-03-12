@@ -4,6 +4,7 @@ import com.dhruv.instachatviewer.data.model.MessageEntity
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import java.nio.charset.StandardCharsets
 
 object JsonParser {
 
@@ -25,9 +26,7 @@ object JsonParser {
 
             for (jf in jsonFiles) {
                 try {
-                    // read as ISO_8859_1 then fix to UTF-8 => common mojibake fix
-                    val raw = jf.readText(Charsets.ISO_8859_1)
-                    val text = String(raw.toByteArray(Charsets.ISO_8859_1), Charsets.UTF_8)
+                    val text = jf.readText(StandardCharsets.UTF_8)
 
                     val jo = JSONObject(text)
 
@@ -110,7 +109,7 @@ object JsonParser {
                         }
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    continue
                 }
             }
 
@@ -126,10 +125,18 @@ object JsonParser {
     private fun fixEncoding(s: String?): String? {
         if (s == null) return null
         return try {
-            val bytes = s.toByteArray(Charsets.ISO_8859_1)
-            String(bytes, Charsets.UTF_8)
+            if (looksLikeMojibake(s)) {
+                val bytes = s.toByteArray(Charsets.ISO_8859_1)
+                String(bytes, Charsets.UTF_8)
+            } else {
+                s
+            }
         } catch (e: Exception) {
             s
         }
+    }
+
+    private fun looksLikeMojibake(value: String): Boolean {
+        return value.contains('Ã') || value.contains('â') || value.contains('ð')
     }
 }

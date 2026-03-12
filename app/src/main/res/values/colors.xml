@@ -1,8 +1,20 @@
 <resources>
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="light_gray">#F8F8F8</color>
-    <color name="purple_500">#C13584</color> <!-- Instagram accent -->
-    <color name="background_light">#FFFFFF</color>
-    <color name="red">#FF0F00</color>
+    <color name="black">#111827</color>
+    <color name="light_gray">#F4F7FB</color>
+    <color name="background_light">#F7F3EE</color>
+    <color name="red">#FF6B57</color>
+    <color name="purple_500">#C13584</color>
+    <color name="deep_navy">#182033</color>
+    <color name="peach">#FFF1E8</color>
+    <color name="mist">#EDF3FF</color>
+    <color name="mint">#DDF5EC</color>
+    <color name="bubble_sent">#D94F3D</color>
+    <color name="bubble_received">#FFFFFF</color>
+    <color name="surface_card">#FFFDFC</color>
+    <color name="text_muted">#64748B</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="avatar_start">#FF8A65</color>
+    <color name="avatar_end">#FFB74D</color>
+    <color name="success">#198754</color>
 </resources>

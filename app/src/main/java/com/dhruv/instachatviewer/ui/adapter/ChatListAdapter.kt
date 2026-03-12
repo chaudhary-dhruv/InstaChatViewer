@@ -2,6 +2,8 @@ package com.dhruv.instachatviewer.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dhruv.instachatviewer.data.model.ChatEntity
 import com.dhruv.instachatviewer.databinding.ItemChatBinding
@@ -11,15 +13,7 @@ import java.util.Locale
 
 class ChatListAdapter(
     private val onChatClick: (ChatEntity) -> Unit
-) : RecyclerView.Adapter<ChatListAdapter.ChatViewHolder>() {
-
-    private val items = mutableListOf<ChatEntity>()
-
-    fun submitList(list: List<ChatEntity>) {
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
-    }
+) : ListAdapter<ChatEntity, ChatListAdapter.ChatViewHolder>(DiffCallback) {
 
     inner class ChatViewHolder(
         private val binding: ItemChatBinding
@@ -51,10 +45,8 @@ class ChatListAdapter(
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount(): Int = items.size
 
     private fun formatTimestamp(ts: Long?): String {
         if (ts == null || ts == 0L) return ""
@@ -64,6 +56,16 @@ class ChatListAdapter(
             fmt.format(date)
         } catch (e: Exception) {
             ""
+        }
+    }
+
+    private object DiffCallback : DiffUtil.ItemCallback<ChatEntity>() {
+        override fun areItemsTheSame(oldItem: ChatEntity, newItem: ChatEntity): Boolean {
+            return oldItem.chatId == newItem.chatId
+        }
+
+        override fun areContentsTheSame(oldItem: ChatEntity, newItem: ChatEntity): Boolean {
+            return oldItem == newItem
         }
     }
 }

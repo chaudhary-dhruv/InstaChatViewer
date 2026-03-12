@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">InstaChat Viewer</string>
+    <string name="guide_title">Turn your Instagram export into a clean chat timeline</string>
+    <string name="guide_subtitle">Download the official JSON export from Instagram, import the ZIP here, and explore every conversation by date.</string>
+    <string name="upload_title">Bring in your Instagram export</string>
+    <string name="upload_subtitle">Only message JSON files are processed. Temporary extracted files are deleted after import for privacy.</string>
+    <string name="chat_list_title">Your memory lane</string>
+    <string name="chat_list_subtitle">Search friends, reopen old moments, and jump through time in seconds.</string>
 </resources>

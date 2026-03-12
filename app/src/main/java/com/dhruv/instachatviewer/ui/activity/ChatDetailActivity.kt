@@ -11,11 +11,15 @@ import com.dhruv.instachatviewer.data.repository.ChatRepository
 import com.dhruv.instachatviewer.databinding.ActivityChatDetailBinding
 import com.dhruv.instachatviewer.ui.adapter.MessageAdapter
 import com.dhruv.instachatviewer.utils.Prefs
+import com.dhruv.instachatviewer.utils.SecurityUtils
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
 class ChatDetailActivity : AppCompatActivity() {
@@ -32,6 +36,7 @@ class ChatDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SecurityUtils.protectSensitiveContent(this)
         binding = ActivityChatDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -65,10 +70,7 @@ class ChatDetailActivity : AppCompatActivity() {
         binding.rvMessages.adapter = adapter
 
         binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-
-        binding.ivDate.setOnClickListener {
-            openDatePicker()
-        }
+        binding.ivDate.setOnClickListener { openDatePicker() }
     }
 
     private fun loadMessages() {
@@ -77,6 +79,7 @@ class ChatDetailActivity : AppCompatActivity() {
             allMessages = msgs
             withContext(Dispatchers.Main) {
                 adapter.submitList(msgs)
+                binding.tvChatMeta.text = buildMetaText(msgs)
                 if (msgs.isNotEmpty()) {
                     binding.rvMessages.scrollToPosition(msgs.size - 1)
                 }
@@ -86,7 +89,7 @@ class ChatDetailActivity : AppCompatActivity() {
 
     private fun openDatePicker() {
         val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select date")
+            .setTitleText("Jump to date")
             .build()
 
         picker.addOnPositiveButtonClickListener { selection ->
@@ -117,8 +120,8 @@ class ChatDetailActivity : AppCompatActivity() {
         input.hint = "Your Instagram name"
 
         AlertDialog.Builder(this)
-            .setTitle("Who's \"you\" in chats?")
-            .setMessage("Enter your Instagram name exactly as it appears in messages.\nGroup chats me bubbles sahi dikhenge.")
+            .setTitle("Who are you in this export?")
+            .setMessage("Enter your Instagram name exactly as it appears in the messages so sent and received bubbles stay accurate.")
             .setView(input)
             .setPositiveButton("Save") { dialog, _ ->
                 val name = input.text.toString().trim()
@@ -129,9 +132,18 @@ class ChatDetailActivity : AppCompatActivity() {
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton("Later") { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun buildMetaText(messages: List<MessageEntity>): String {
+        if (messages.isEmpty()) return "No messages found in this conversation."
+
+        val first = messages.first().timestamp
+        val last = messages.last().timestamp
+        val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        return "${messages.size} messages • ${formatter.format(Date(first))} to ${formatter.format(Date(last))}"
     }
 }

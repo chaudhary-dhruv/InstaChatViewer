@@ -1,143 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
-    android:padding="16dp">
+    android:background="@drawable/bg_screen_gradient"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:padding="18dp">
 
-        <!-- Title -->
-
-        <!-- Step 1 -->
-        <TextView
-            android:id="@+id/tvGuideTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text=" Download Instagram Chat file"
+            android:background="@drawable/bg_surface_card"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/mint"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="SETUP GUIDE"
+                android:textColor="@color/success"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGuideTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/guide_title"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/guide_subtitle"
+                android:textColor="@color/text_muted"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Follow these six steps in Instagram"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 1"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 1" />
+            android:src="@drawable/step1" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1️⃣ Open Instagram → go to Settings → in the search bar, type “Download your information”, then open the option “Download your information.”"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:text="1. Open Instagram settings, search for Download your information, and open that option."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <!-- Step 2 -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step2"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 2"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 2" />
+            android:src="@drawable/step2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2️⃣ Tap on “Create export.”"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:text="2. Tap Create export."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <!-- Step 3 -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step3"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 3"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 3" />
+            android:src="@drawable/step3" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3️⃣ Choose the option “Export to device.”"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="16dp"
+            android:text="3. Choose Export to device."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <!-- Step 4 -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step4"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 4"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 3" />
+            android:src="@drawable/step4" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4️⃣ Under Notify option, select your email ID, \n      Data range: All time, \n      Format: JSON, \n      After filling in all the details, tap on “Start export.”"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="16dp"
+            android:text="4. Set Data range to All time, Format to JSON, then tap Start export."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <!-- Step 5 -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step5"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 5"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 3" />
+            android:src="@drawable/step5" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5️⃣ Enter your Instagram password and tap “Continue.”"
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="16dp"
+            android:text="5. Confirm your Instagram password and continue."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <!-- Step 6 -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/step6"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_surface_soft"
+            android:contentDescription="Step 6"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:contentDescription="Step 3" />
+            android:src="@drawable/step6" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6️⃣After a few hours, you will receive an email at the address you entered.
-The email will contain a download link — click it to download a ZIP file that includes all your chat data."
-            android:textSize="16sp"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="20dp"
+            android:text="6. Instagram will email you the ZIP. Download it, then import that ZIP into this app."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-
-
-        <!-- Next Button -->
         <Button
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"
+            android:layout_marginBottom="24dp"
             android:backgroundTint="@color/red"
-            android:textColor="@color/white"
-            android:layout_marginBottom="32dp" />
+            android:text="Continue to import"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </ScrollView>
