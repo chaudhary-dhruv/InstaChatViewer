@@ -88,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Search chats"
+        app:placeholderText="Search chats"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="18dp"
         app:boxCornerRadiusBottomStart="18dp"
@@ -102,6 +103,7 @@
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Search chats"
             android:textColor="@color/black"
             android:textColorHint="@color/text_muted"
             android:singleLine="true" />

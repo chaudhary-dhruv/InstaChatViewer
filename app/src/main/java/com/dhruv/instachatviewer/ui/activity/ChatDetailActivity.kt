@@ -1,7 +1,7 @@
 package com.dhruv.instachatviewer.ui.activity
 
 import android.os.Bundle
-import android.widget.EditText
+import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dhruv.instachatviewer.data.model.MessageEntity
 import com.dhruv.instachatviewer.data.repository.ChatRepository
 import com.dhruv.instachatviewer.databinding.ActivityChatDetailBinding
+import com.dhruv.instachatviewer.databinding.DialogOwnerNameBinding
 import com.dhruv.instachatviewer.ui.adapter.MessageAdapter
 import com.dhruv.instachatviewer.utils.Prefs
 import com.dhruv.instachatviewer.utils.SecurityUtils
@@ -116,15 +117,12 @@ class ChatDetailActivity : AppCompatActivity() {
     }
 
     private fun askOwnerNameOnce() {
-        val input = EditText(this)
-        input.hint = "Your Instagram name"
+        val dialogBinding = DialogOwnerNameBinding.inflate(LayoutInflater.from(this))
 
         AlertDialog.Builder(this)
-            .setTitle("Who are you in this export?")
-            .setMessage("Enter your Instagram name exactly as it appears in the messages so sent and received bubbles stay accurate.")
-            .setView(input)
+            .setView(dialogBinding.root)
             .setPositiveButton("Save") { dialog, _ ->
-                val name = input.text.toString().trim()
+                val name = dialogBinding.etOwnerName.text?.toString()?.trim().orEmpty()
                 if (name.isNotEmpty()) {
                     Prefs.setOwnerName(this, name)
                     ownerName = name

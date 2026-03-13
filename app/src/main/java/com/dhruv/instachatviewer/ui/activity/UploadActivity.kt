@@ -60,6 +60,14 @@ class UploadActivity : AppCompatActivity() {
             )
         }
 
+        binding.tvHelpLink.setOnClickListener {
+            startActivity(Intent(this, DownloadGuideActivity::class.java))
+        }
+
+        binding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         binding.btnNext.setOnClickListener {
             startActivity(Intent(this, ChatListActivity::class.java))
             finish()
