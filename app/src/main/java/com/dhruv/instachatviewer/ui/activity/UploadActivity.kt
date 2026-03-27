@@ -61,7 +61,9 @@ class UploadActivity : AppCompatActivity() {
         }
 
         binding.tvHelpLink.setOnClickListener {
-            startActivity(Intent(this, DownloadGuideActivity::class.java))
+            val intent = Intent(this, DownloadGuideActivity::class.java)
+            intent.putExtra("from_help", true)
+            startActivity(intent)
         }
 
         binding.ivBack.setOnClickListener {

@@ -13,8 +13,10 @@ class DownloadGuideActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ⚡ If user already imported once, go directly to chat list
-        if (Prefs.hasImported(this)) {
+        val fromHelp = intent.getBooleanExtra("from_help", false)
+
+        // ⚡ Only auto-redirect when NOT coming from help
+        if (!fromHelp && Prefs.hasImported(this)) {
             startActivity(Intent(this, ChatListActivity::class.java))
             finish()
             return
@@ -27,5 +29,6 @@ class DownloadGuideActivity : AppCompatActivity() {
             val intent = Intent(this, UploadActivity::class.java)
             startActivity(intent)
         }
+
     }
 }
